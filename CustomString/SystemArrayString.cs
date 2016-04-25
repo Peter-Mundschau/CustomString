@@ -9,58 +9,79 @@ namespace CustomString
 {
     public class SystemArrayString : ICustomString
     {
-        public string StringToManipulate = "Hello World";
-        public string string2Manipulate;
-        public char[] manipulatedCharArray;
+        
+        public char[] originalArray;
+        
         
         public SystemArrayString(string manipulatedString)
         {
-            manipulatedCharArray = manipulatedString.ToCharArray();
+            originalArray = manipulatedString.ToCharArray();
         }
         public override string ToString()
         {
-            string finalString = null;
-            foreach (char character in manipulatedCharArray)
+            string maniputlatedString = null;    // or string maniputlatedString = ""
+            foreach (char character in originalArray)
             {
-                finalString += character;
+                maniputlatedString += character.ToString();
 
             }
-            return finalString;
+            return maniputlatedString;
         }
 
 
 
         public void Insert(int startIndex, string stringToInsert)
         {
-
-            string2Manipulate = Console.ReadLine();
-            string2Manipulate = manipulatedCharArray.ToString();
-            startIndex = Convert.ToInt32(Console.ReadLine());
-            StringToManipulate.Insert(startIndex, string2Manipulate);
-
-            char[] Array1 =StringToManipulate.ToCharArray();
-
-            foreach (char item in Array1)
-            {
-                Console.Write(item);
-            }
+            int size = originalArray.Count() + stringToInsert.Count();
+            char[] tempArray = originalArray;
+            originalArray = new char[size];
             
+
+            for (int i = 0; i < originalArray.Length; i++)
+            {
+                if (i>=startIndex&&i<(startIndex + stringToInsert.Length))
+                {
+                    originalArray[i] = stringToInsert.ToCharArray()[i - startIndex];
+                }
+                else
+                {
+                    int insert = i;
+                    if (i>startIndex)
+                    {
+                        insert = i - startIndex;
+                    }
+                    originalArray[i] = tempArray[insert];
+                }
+            }
+
         }
 
         public int Length()
         {
-            return manipulatedCharArray.Length;
+            return originalArray.Length;
         }
 
         public void Remove(int startIndex, int numCharsToRemove)
         {
+            int endOfString = originalArray.Length - numCharsToRemove;
+            for (int i = 0; i < originalArray.Length; i++)
+            {
+                if (i>=startIndex && i+numCharsToRemove<originalArray.Length)
+                {
+                    int removeindex = i;
+                    originalArray[removeindex] = originalArray[removeindex + numCharsToRemove];
+                }
+            }
+            char[] tempArray = new char[endOfString];
+            for (int i = 0; i < endOfString && i<originalArray.Length; i++)
+            {
+                tempArray[i] = originalArray[i];
+            }
+            originalArray = tempArray;
          
         }
 
-       public void MakeMeInsertAString()
-        {
 
-        }
 
 
 

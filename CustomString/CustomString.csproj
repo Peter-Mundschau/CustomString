@@ -43,6 +43,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculator\Addition.cs" />
+    <Compile Include="Calculator\Division.cs" />
+    <Compile Include="Calculator\Exponential.cs" />
+    <Compile Include="Calculator\mainMenu.cs" />
+    <Compile Include="Calculator\Math.cs" />
+    <Compile Include="Calculator\Multiplication.cs" />
+    <Compile Include="Calculator\Subtraction.cs" />
     <Compile Include="CustomLinkedString.cs" />
     <Compile Include="ICustomString.cs" />
     <Compile Include="PlayArea.cs" />
